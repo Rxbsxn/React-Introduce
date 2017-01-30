@@ -2,8 +2,12 @@ import React from 'react';
 
 class App extends React.Component {
     render() {
-        // return <h1>Hi</h1>
-        return React.createElement('h1', null, 'Hello EggHeads');
+        return (
+            <div>
+                <h1>Hello World!</h1>
+                <b>Bold</b>
+            </div>
+        )
     }
 }
 
