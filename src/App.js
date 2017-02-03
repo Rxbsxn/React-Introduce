@@ -1,44 +1,29 @@
-import React from 'react';
+import React, {Component, Children} from 'react';
 
-
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            input: '/*  add code here */',
-            output: '',
-            err: ''
-        }
-    }
-    update(e) {
-        let code = e.target.value;
-        try {
-            this.setState({
-                output: window.Babel
-                .transform(code, {presets: ['es2015', 'react']})
-                .code,
-                err: ''
-            })
-        }
-        catch(err) {
-            this.setState({err: err.message})
-        }
-    }
+class App extends Component {
     render() {
         return (
-            <div>
-                <header>{this.state.err}</header>
-                <div className="container">
-                <textarea
-                onChange={this.update.bind(this)}
-                defaultValue={this.state.input}/>
-                <pre>
-                    {this.state.output}
-                </pre>
-                </div>
-            </div>
+            <Parent>
+                <div className="childA"></div>            
+                <div className="childB"></div>
+            </Parent>
+        )  
+    }
+} 
 
-        )
+class Parent extends Component {
+    render()  {
+            //First Method
+        // let items = React.Children
+        //     .map(this.props.children, child => child)
+            //Second Method
+        let items = Children
+            .forEach(this.props.children, child => console
+                .log(child.props.className))
+            //Third Method working with only one child
+        // let items = Children.only(this.props.children)
+        console.log(items)
+        return null
     }
 }
 
